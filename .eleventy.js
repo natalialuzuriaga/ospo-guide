@@ -295,6 +295,9 @@ module.exports = function (config) {
     pathPrefix = process.env.BASEURL
   }
 
+  console.log(process.env.BASEURL, "checking here")
+  console.log(pathPrefix, "checking here")
+
   return {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid
