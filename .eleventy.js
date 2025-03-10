@@ -293,9 +293,9 @@ module.exports = function (config) {
   // If BASEURL env variable exists, update pathPrefix to the BASEURL
   if (process.env.BASEURL) {
     pathPrefix = process.env.BASEURL
+    console.log(process.env.BASEURL, "checking here")
   }
 
-  console.log(process.env.BASEURL, "checking here")
   console.log(pathPrefix, "checking here")
 
   return {
