@@ -1,6 +1,6 @@
 # Open Source Program Office Guide 
 What's in the guide: 
-- [Inbound](https://github.com/DSACMS/ospo-guide/tree/main/inbound/)
+- [Inbound](https://github.com/DSACMS/ospo-guide/tree/main/inbound)
 - [Outbound](https://github.com/DSACMS/ospo-guide/tree/main/outbound)
 - [Growing](https://github.com/DSACMS/ospo-guide/tree/main/growing)
 - [Resources](https://github.com/DSACMS/ospo-guide/tree/main/resources)
