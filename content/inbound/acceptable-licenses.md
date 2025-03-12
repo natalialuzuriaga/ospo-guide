@@ -2,7 +2,7 @@
 title: Acceptable Licenses
 description: 'Acceptable Licenses'
 permalink: /inbound/acceptable-licenses
-layout: layouts/page
+layout: layouts/page/
 section: inbound
 tags: ospo
 eleventyNavigation:
