@@ -1,8 +1,8 @@
 ---
 title: Inbound Review Checklist
 description: 'The review process to approve open source software to be used in the agency.'
-permalink: /inbound/inbound-review-checklist
-layout: layouts/page/
+permalink: /inbound/inbound-review-checklist/
+layout: layouts/page
 section: inbound
 tags: ospo
 eleventyNavigation:
