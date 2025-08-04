@@ -31,7 +31,7 @@ subnav:
                 background-color: #f1f1f1;
             }
         </style>
-        <a href="{{ guide.url }}" id="packaging-style"
+        <a href="{{ guide.url | url }}" id="packaging-style"
           style="text-decoration: none; font-size: 1.2rem; font-weight: 600;
           color: #046b99; padding: 1.5%"
         >
