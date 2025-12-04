@@ -26,7 +26,7 @@ module.exports = async function () {
     // Extract all repository names
     const repoNames = repoJson.map(repo => repo.name);
 
-    repoNames.forEach(async (repo) => {
+    await Promise.all(repoNames.map(async (repo) => {
       try {
         // Fetch code.json file from repository
         const json = await fetch(
@@ -56,7 +56,7 @@ module.exports = async function () {
       catch (e) {
         console.warn(`No code.json file in ${repo}, skipping...`);
       }
-    });
+    }));
 
   } catch (e) {
     console.log(`Unable to fetch repositories from ${orgName}`);
