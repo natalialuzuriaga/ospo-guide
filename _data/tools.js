@@ -51,7 +51,7 @@ module.exports = async function () {
         // Add code.json object to data
         // Filter by tags: only add featured
         // Filter by status: only add tools in beta, production, or to be released
-        if (tags.includes('featured') && ['Production', 'Beta', 'Release Candidate'].includes(status)) {
+        if (tags.includes('featured') || ['Production', 'Beta', 'Release Candidate'].includes(status)) {
           tools[repo] = codejson;
         }
       }
