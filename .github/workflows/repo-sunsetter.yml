@@ -1,0 +1,37 @@
+name: repo-sunsetter
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  update-code-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Step 1: Update metadata using "archival mode"
+      - name: Update code.json using archival mode
+        uses: DSACMS/automated-codejson-generator@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: "main"
+          SKIP_PR: "false"
+          ARCHIVE: "true"
+	   
+      # Step 2: File an issue with archival checklist items (probably separate action)
+      - name: Archival checklist items
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/checklist.md
+
+      # Step 3 (probably separate action)
+    #   - name: Run security checks and scans: Trivy, OpenSSF, Hipcheck workflows
