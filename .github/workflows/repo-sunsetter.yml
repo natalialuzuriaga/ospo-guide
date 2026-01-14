@@ -23,7 +23,7 @@ jobs:
           fi
 
           # Validate JSON file
-          if ! jq empty data.json 2>/dev/null; then
+          if ! jq empty code.json 2>/dev/null; then
             echo "Invalid JSON file"
             exit 1
           fi
