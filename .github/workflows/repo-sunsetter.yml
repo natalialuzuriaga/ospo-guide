@@ -38,9 +38,9 @@ jobs:
           DESTINATION_PATH="checklist.md"
 
           if [ "$TIER" == "0" ] || [ "$TIER" == "1" ]; then
-            FILE_URL="https://raw.githubusercontent.com/natalialuzuriaga/ospo-guide/blob/main/.github/checklist.md"
+            FILE_URL="https://raw.githubusercontent.com/natalialuzuriaga/ospo-guide/main/.github/checklist.md"
           elif [ "$TIER" == "2" ] || [ "$TIER" == "3" ] || [ "$TIER" == "4" ]; then
-            FILE_URL="https://raw.githubusercontent.com/natalialuzuriaga/ospo-guide/blob/main/.github/checklist.md"
+            FILE_URL="https://raw.githubusercontent.com/natalialuzuriaga/ospo-guide/main/.github/checklist.md"
           else
             echo "Unknown tier: $TIER"
             exit 1
