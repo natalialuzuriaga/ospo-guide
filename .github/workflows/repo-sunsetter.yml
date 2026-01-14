@@ -15,23 +15,22 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Fetch maturity model tier from code.json
-       run: |
-         # Install jq if not already installed
-         if ! command -v jq &> /dev/null; then
-           sudo apt-get update && sudo apt-get install -y jq
-         fi
+        run: |
+          # Install jq if not already installed
+          if ! command -v jq &> /dev/null; then
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
 
-         # Validate JSON file
-         if ! jq empty data.json 2>/dev/null; then
-           echo "Invalid JSON file"
-           exit 1
-         fi
+          # Validate JSON file
+          if ! jq empty data.json 2>/dev/null; then
+            echo "Invalid JSON file"
+            exit 1
+          fi
 
-         # Extract values from JSON
-         TIER=$(jq -r '.maturityModelTier' code.json)
-         echo "TIER=$TIER" >> $GITHUB_ENV
+          # Extract values from JSON
+          TIER=$(jq -r '.maturityModelTier' code.json)
+          echo "TIER=$TIER" >> $GITHUB_ENV
 
       - name: Create checklist file based on tier
         run: |
@@ -70,14 +69,16 @@ jobs:
           filename: ./checklist.md
 
   update-code-json:
-    # Update metadata using "archival mode"
-      - name: Update code.json using archival mode
-        uses: DSACMS/automated-codejson-generator@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: "main"
-          SKIP_PR: "false"
-          ARCHIVE: "true"
+    runs-on: ubuntu-latest
+    name: Update code.json using archival mode
+    steps:
+        - name: Update code.json using archival mode
+          uses: DSACMS/automated-codejson-generator@main
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            BRANCH: "main"
+            SKIP_PR: "false"
+            ARCHIVE: "true"
 
 
          
