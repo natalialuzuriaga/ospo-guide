@@ -24,7 +24,6 @@ jobs:
           BRANCH: "main"
           SKIP_PR: "false"
           ARCHIVE: "true"
-	   
       # Step 2: File an issue with archival checklist items (probably separate action)
       - name: Archival checklist items
         uses: JasonEtco/create-an-issue@v2
@@ -32,6 +31,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: .github/checklist.md
-
-      # Step 3 (probably separate action)
-    #   - name: Run security checks and scans: Trivy, OpenSSF, Hipcheck workflows
