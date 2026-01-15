@@ -98,7 +98,7 @@ jobs:
             git checkout -b archive-notice-update
         - name: Add archival notice to README.md
           run: |
-            ARCHIVE_TEXT="This project is now archived and no longer actively maintained. It has been archived to retain its contents for reference. Feel free to explore and fork the repository, but please note that updates or support will not be provided."
+            ARCHIVE_TEXT="> [!IMPORTANT]\n> This project is now archived and no longer actively maintained. It has been archived to retain its contents for reference. Feel free to explore and fork the repository, but please note that updates or support will not be provided."
 
             awk -v notice="$ARCHIVE_TEXT" '
             /^# / && !found {
@@ -120,6 +120,7 @@ jobs:
         - name: Push branch
           run: |
             git push origin archive-notice-update
+            git checkout main
 
         - name: Create Pull Request
           uses: peter-evans/create-pull-request@v6
@@ -136,3 +137,5 @@ jobs:
               - Includes clear information about repository status
               
             labels: archive
+            commit-message: "docs: add archive notice to README"
+            author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
