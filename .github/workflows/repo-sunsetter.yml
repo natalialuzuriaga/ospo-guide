@@ -95,7 +95,7 @@ jobs:
             fetch-depth: 0
         - name: Create a branch
           run: |
-            git checkout -b update-readme-archive
+            git checkout -b archive-notice-update
         - name: Add archival notice to README.md
           run: |
             ARCHIVE_TEXT="This project is now archived and no longer actively maintained. It has been archived to retain its contents for reference. Feel free to explore and fork the repository, but please note that updates or support will not be provided."
