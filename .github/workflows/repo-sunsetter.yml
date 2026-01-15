@@ -107,9 +107,7 @@ jobs:
               found=1
               next
             }
-            {print}'
-            
-            README.md > temp_readme.md
+            {print}' README.md > temp_readme.md
             mv temp_readme.md README.md
 
         - name: Commit changes
