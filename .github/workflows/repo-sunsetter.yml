@@ -93,9 +93,9 @@ jobs:
           uses: actions/checkout@v4
           with:
             fetch-depth: 0
-        - name: Create a branch
-          run: |
-            git checkout -b archive-notice-update
+        # - name: Create a branch
+        #   run: |
+        #     git checkout -b archive-notice-update
         - name: Add archival notice to README.md
           run: |
             ARCHIVE_TEXT="> [!IMPORTANT]\n> This project is now archived and no longer actively maintained. It has been archived to retain its contents for reference. Feel free to explore and fork the repository, but please note that updates or support will not be provided."
@@ -110,17 +110,17 @@ jobs:
             {print}' README.md > temp_readme.md
             mv temp_readme.md README.md
 
-        - name: Commit changes
-          run: |
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git add README.md
-            git commit -m "docs: add archive notice to README"
+        # - name: Commit changes
+        #   run: |
+        #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        #     git config --local user.name "github-actions[bot]"
+        #     git add README.md
+        #     git commit -m "docs: add archive notice to README"
 
-        - name: Push branch
-          run: |
-            git push origin archive-notice-update
-            git checkout main
+        # - name: Push branch
+        #   run: |
+        #     git push origin archive-notice-update
+        #     git checkout main
 
         - name: Create Pull Request
           uses: peter-evans/create-pull-request@v6
