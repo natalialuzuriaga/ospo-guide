@@ -8,6 +8,7 @@ permissions:
   issues: write
 
 jobs:
+  # File an issue with the corresponding archival checklist based on maturity model tier
   file-archival-issue:
     runs-on: ubuntu-latest
     steps:
@@ -24,15 +25,16 @@ jobs:
 
           # Validate JSON file
           if ! jq empty code.json 2>/dev/null; then
-            echo "Invalid JSON file"
+            echo "❌ Invalid JSON file"
             exit 1
           fi
 
           # Extract values from JSON
           TIER=$(jq -r '.maturityModelTier' code.json)
           echo "TIER=$TIER" >> $GITHUB_ENV
+          echo "✅ Maturity Model Tier: $TIER"
 
-      - name: Create checklist file based on tier
+      - name: Download checklist file based on tier
         run: |
           FILE_URL=""
           DESTINATION_PATH="checklist.md"
@@ -42,7 +44,7 @@ jobs:
           elif [ "$TIER" == "2" ] || [ "$TIER" == "3" ] || [ "$TIER" == "4" ]; then
             FILE_URL="https://raw.githubusercontent.com/natalialuzuriaga/ospo-guide/main/.github/checklist.md"
           else
-            echo "Unknown tier: $TIER"
+            echo "❌ Unknown tier: $TIER"
             exit 1
           fi
 
@@ -53,25 +55,28 @@ jobs:
           # Verify download
           if [ -f "$DESTINATION_PATH" ]; then
             echo "✅ File downloaded successfully"
-            echo "📊 File size: $(du -h $DESTINATION_PATH | cut -f1)"
             ls -lh "$DESTINATION_PATH"
           else
             echo "❌ Download failed"
             exit 1
           fi
 
-      # File an issue with archival checklist items
-      - name: Archival checklist items
+      - name: Create archival checklist issue on the repository
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: ./checklist.md
 
+  # Update repository metadata to reflect archival status
   update-code-json:
     runs-on: ubuntu-latest
     name: Update code.json using archival mode
     steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
         - name: Update code.json using archival mode
           uses: DSACMS/automated-codejson-generator@main
           with:
@@ -79,8 +84,57 @@ jobs:
             BRANCH: "main"
             SKIP_PR: "false"
             ARCHIVE: "true"
+  
+  update-readme:
+    runs-on: ubuntu-latest
+    name: Update README.md using archival mode
+    steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - name: Create a branch
+          run: |
+            git checkout -b update-readme-archive
+        - name: Add archival notice to README.md
+          run: |
+            ARCHIVE_TEXT="This project is now archived and no longer actively maintained. It has been archived to retain its contents for reference. Feel free to explore and fork the repository, but please note that updates or support will not be provided."
 
+            awk -v notice="$ARCHIVE_NOTICE" '
+            /^# / && !found {
+              print $0
+              print notice
+              found=1
+              next
+            }
+            {print}'
+            
+            README.md > temp_readme.md
+            mv temp_readme.md README.md
 
-         
-          
-       
+        - name: Commit changes
+          run: |
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add README.md
+            git commit -m "docs: add archive notice to README"
+
+        - name: Push branch
+          run: |
+            git push origin archive-notice-update
+
+        - name: Create Pull Request
+          uses: peter-evans/create-pull-request@v6
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            branch: archive-notice-update
+            title: "📦 Add Archive Notice to README"
+            body: |
+              ## Description
+              This PR adds an archive notice to the README to inform users that this project is no longer actively maintained.
+              
+              ## Changes
+              - Added archive notice banner to README.md
+              - Includes clear information about repository status
+              
+            labels: archive
