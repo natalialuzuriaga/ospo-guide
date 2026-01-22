@@ -8,14 +8,9 @@ permissions:
   issues: write
 
 jobs:
-  update-code-json:
+  run-repo-sunsetter:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Run repo-sunsetter
         id: archive
         uses: DSACMS/repo-sunsetter@DSACMS/nat/mvp
