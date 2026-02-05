@@ -22,4 +22,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           METADATA_FILE_TYPE: "publiccode.yml"
           ARCHIVE_NOTICE_TEXT: "THIS REPOSITORY WILL BE ARCHIVED"
-          USE_MATURITY_MODEL_TIERS: "true"
+          USE_MATURITY_MODEL_TIERS: "false"
