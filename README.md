@@ -1,4 +1,6 @@
 # CMS Open Source Program Office Guide
+> [!WARNING]
+>THIS REPOSITORY WILL BE ARCHIVED
 
 ospo-guide is a collection of resources written by the CMS Open Source Program Office.
 https://dsacms.github.io/ospo-guide/
