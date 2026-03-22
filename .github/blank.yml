@@ -1,0 +1,25 @@
+name: USDC test workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+ hello:
+   name: Hello USDC!
+   runs-on: ubuntu-latest
+    steps: 
+      run: echo “Hello USDC!”
+      run: echo “SWE track best track”
+
+ create-file:
+    name: Create a new file with content
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Create a directory, touch a file, and add content
+      - name: Create Directory and File with Content
+        run: |
+          mkdir -p usdc
+          cd usdc
+          touch fellows.txt
+          echo "This file contains a list of fellows" >> fellows.txt
+          cat fellows.txt
