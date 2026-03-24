@@ -20,7 +20,7 @@ jobs:
       - name: Run Health Report Script
         run: |
           chmod +x actions/repo-health-report.sh
-          bash actions/repo-health-report.sh
+          ./repo-health-report.sh
 
       - name: Create Pull Request with Report
         # 📖 Docs: https://github.com/peter-evans/create-pull-request
