@@ -1,0 +1,36 @@
+name: Calculate the Hypotenuse
+
+on:
+  workflow_dispatch:
+    inputs:
+      side_a:
+        description: "Enter the length of side a"
+        required: true
+        type: number
+      side_b:
+        description: "Enter the length of side b"
+        required: true
+        type: number
+
+jobs:
+  add_squares:
+    name: "Add the squares of the sides"
+    runs-on: ubuntu-latest
+    outputs:
+      sum_of_squares: ${{ steps.calculate.outputs.sum_of_squares }}
+    steps:
+      - name: Calculate the sum of squares
+        id: calculate
+        run: |
+          SUM_OF_SQUARES=$(( ${{ inputs.side_a }}**2 + ${{ inputs.side_b }}**2 ))
+          echo "sum_of_squares=$SUM_OF_SQUARES" >> $GITHUB_OUTPUT
+          echo "Sum of squares: $SUM_OF_SQUARES"
+  calculate_hypotenuse:
+    name: "Calculate the hypotenuse"
+    runs-on: ubuntu-latest
+    needs: add_squares
+    steps:
+      - name: Calculate the hypotenuse
+        run: |
+          HYPOTENUSE=$(echo "scale=2; sqrt(${{ needs.add_squares.outputs.sum_of_squares }})" | bc)
+          echo "The length of the hypotenuse is: $HYPOTENUSE"
