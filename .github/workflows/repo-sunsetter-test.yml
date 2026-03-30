@@ -1,0 +1,35 @@
+name: repo-sunsetter main action
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  run-repo-sunsetter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Run repo-sunsetter
+        id: archive
+        uses: DSACMS/repo-sunsetter@DSACMS/nat/outputs
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USE_MATURITY_MODEL_TIERS: "true"
+          METADATA_FILE_TYPE: "publiccode.yml"
+      - name: Output results
+        shell: bash
+        run: |
+          echo "🌅 USING OUTPUT VARIABLES 🌅"
+          echo "✅ Archival checklist issue created: #${{ steps.archive.outputs.archival_checklist_issue_number }} - ${{ steps.archive.outputs.archival_checklist_issue_url }}"
+          echo "✅ README update pull request created: #${{ steps.archive.outputs.readme_pull_request_number }} - ${{ steps.archive.outputs.readme_pull_request_number }}"
+          if [ -n "${{ steps.archive.outputs.pr_url }}" ]; then
+            echo "✅ Metadata file update pull request created: ${{ steps.archive.outputs.metadata_update_pull_request_url }}"
+          else
+            echo "ℹ️ No metadata file update pull request created."
+          fi
