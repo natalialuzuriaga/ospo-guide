@@ -3,7 +3,7 @@
   "version": "",
   "description": "Open Source Program Office Guide for CMS.gov",
   "longDescription": "A comprehensive guide offering resources, best practices, and processes in open source software development that take place within the CMS Open Source Program Office.",
-  "status": "Production",
+  "status": "Archival",
   "permissions": {
     "licenses": [
       {
@@ -17,7 +17,7 @@
     "exemptionText": ""
   },
   "organization": "Centers for Medicare & Medicaid Services",
-  "repositoryURL": "https://github.com/DSACMS/ospo-guide",
+  "repositoryURL": "https://github.com/natalialuzuriaga/ospo-guide",
   "repositoryHost": "github.com/DSACMS",
   "repositoryVisibility": "public",
   "homepageURL": "https://dsacms.github.io/ospo-guide/",
@@ -25,9 +25,9 @@
   "disclaimerURL": "",
   "disclaimerText": "",
   "vcs": "git",
-  "laborHours": 5536,
+  "laborHours": 5597,
   "reuseFrequency": {
-    "forks": 5,
+    "forks": 0,
     "clones": 0
   },
   "platforms": [
@@ -52,14 +52,15 @@
   "reusedCode": [],
   "partners": [],
   "date": {
-    "created": "2024-04-03T20:47:21Z",
-    "lastModified": "2025-11-21T20:15:51Z",
-    "metadataLastUpdated": "2025-12-01T02:02:34.617Z"
+    "created": "2025-03-10T22:20:43Z",
+    "lastModified": "2026-02-26T20:56:10Z",
+    "metadataLastUpdated": "2026-03-01T02:03:35.822Z"
   },
   "tags": [
     "guide",
     "ospo",
-    "featured"
+    "featured",
+    "archived"
   ],
   "contact": {
     "email": "opensource@cms.hhs.gov",
@@ -72,7 +73,9 @@
   "userInput": false,
   "fismaLevel": "low",
   "group": "CMS/OA/DSAC",
-  "projects": ["ospo"],
+  "projects": [
+    "ospo"
+  ],
   "systems": [],
   "subsetInHealthcare": [
     "operational"
