@@ -1,4 +1,7 @@
 # CMS Open Source Program Office Guide
+> [!WARNING]
+> This project is now archived and no longer actively maintained. It has been archived to retain its contents for reference. Feel free to explore and fork the repository, but please note that updates or support will not be provided.
+
 
 ospo-guide is a collection of resources written by the CMS Open Source Program Office.
 https://dsacms.github.io/ospo-guide/
