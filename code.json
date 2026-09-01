@@ -17,7 +17,7 @@
     "exemptionText": ""
   },
   "organization": "Centers for Medicare & Medicaid Services",
-  "repositoryURL": "https://github.com/DSACMS/ospo-guide",
+  "repositoryURL": "https://github.com/natalialuzuriaga/ospo-guide",
   "repositoryHost": "github.com/DSACMS",
   "repositoryVisibility": "public",
   "homepageURL": "https://dsacms.github.io/ospo-guide/",
@@ -25,9 +25,9 @@
   "disclaimerURL": "",
   "disclaimerText": "",
   "vcs": "git",
-  "laborHours": 5740,
+  "laborHours": 5766,
   "reuseFrequency": {
-    "forks": 5,
+    "forks": 0,
     "clones": 0
   },
   "platforms": [
@@ -52,9 +52,9 @@
   "reusedCode": [],
   "partners": [],
   "date": {
-    "created": "2024-04-03T20:47:21Z",
-    "lastModified": "2026-07-28T16:43:27Z",
-    "metadataLastUpdated": "2026-08-01T02:55:41.415Z"
+    "created": "2025-03-10T22:20:43Z",
+    "lastModified": "2026-08-26T16:17:14Z",
+    "metadataLastUpdated": "2026-09-01T03:26:14.550Z"
   },
   "tags": [
     "featured",
